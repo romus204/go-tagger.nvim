@@ -2,6 +2,8 @@
 
 A lightweight Neovim plugin to manage struct field tags in Go source files.
 
+https://github.com/user-attachments/assets/a0295f98-7d15-4ab1-852c-8be877cb0fd7
+
 ✅ Features:
 - Add new tags (`json`, `xml`, etc.) interactively
 - Convert field names to `snake_case`
