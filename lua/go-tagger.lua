@@ -126,13 +126,4 @@ function M.remove_tags(start_line, end_line)
     end
 end
 
-vim.api.nvim_create_user_command("AddGoTags", function(opts)
-    M.add_tags(opts.line1 - 1, opts.line2)
-end, { range = true })
-
-vim.api.nvim_create_user_command("RemoveGoTags", function(opts)
-    M.remove_tags(opts.line1 - 1, opts.line2)
-end, { range = true })
-
-
 return M
