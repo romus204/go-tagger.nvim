@@ -1,0 +1,99 @@
+*go-tagger.txt*        Plugin to manage Go struct field tags    
+
+==============================================================================
+NAME                                                    *go-tagger*
+
+go-tagger.nvim - A lightweight Neovim plugin to add and remove struct field tags in Go.
+
+==============================================================================
+DESCRIPTION                                             *go-tagger-description*
+
+This plugin provides commands to interactively add or remove struct field tags
+(such as `json`, `xml`, etc.) to your Go code.
+
+Features:
+- Add new tags with `snake_case` conversion
+- Skip unexported/private fields
+- Preserve and merge existing tags
+- Remove tags by name or clear all tags
+- Visual mode support for multi-line struct editing
+
+==============================================================================
+INSTALLATION                                            *go-tagger-install*
+
+With lazy.nvim:
+
+>lua
+{
+  "romus204/go-tagger.nvim",
+  config = function()
+    require("go_tagger").setup({
+      skip_private = true,
+    })
+  end,
+}
+
+With packer.nvim:
+
+>lua
+use {
+  "romus204/go-tagger.nvim",
+  config = function()
+    require("go_tagger").setup()
+  end,
+}
+
+==============================================================================
+CONFIGURATION                                           *go-tagger-setup*
+
+You can configure the plugin with:
+
+>lua
+require("go_tagger").setup({
+  skip_private = true  -- default: true
+})
+
+==============================================================================
+COMMANDS                                                *go-tagger-commands*
+
+                                                        *:AddGoTags*
+:AddGoTags    (Visual mode support)
+
+Prompts for tag(s) (comma-separated), and adds them to selected struct fields.
+Automatically converts field names to snake_case.
+
+Example:
+> tag(s): json,xml
+
+> Result:
+>     Name string `json:"name" xml:"name"`
+
+                                                        *:RemoveGoTags*
+:RemoveGoTags    (Visual mode support)
+
+Prompts for a tag to remove from selected lines.
+Leave empty to remove all tags from fields.
+
+Example:
+> tag: json
+
+> Result:
+>     Name string `xml:"name"`
+
+==============================================================================
+KEYBINDINGS                                             *go-tagger-keymap*
+
+Example keymaps for visual mode:
+
+>lua
+vim.keymap.set("v", "<leader>at", ":AddGoTags<CR>", { desc = "Add Go tags" })
+vim.keymap.set("v", "<leader>rt", ":RemoveGoTags<CR>", { desc = "Remove Go tags" })
+
+==============================================================================
+SEE ALSO                                                *go-tagger-links*
+
+Plugin repo: https://github.com/romus204/go-tagger.nvim
+
+==============================================================================
+vim:tw=78:ft=help:norl:
+
