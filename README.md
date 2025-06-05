@@ -125,19 +125,6 @@ vim.keymap.set("v", "<leader>rt", ":RemoveGoTags<CR>", { desc = "Remove Go struc
 
 ---
 
-## 🧠 How it works
-
-- Parses struct field lines using Lua patterns
-- Automatically converts field names to `snake_case`
-- Merges with existing tags, avoiding duplicates
-- Respects `skip_private` option to ignore unexported fields
-
----
-
-## 📄 License
-
-MIT
-
----
-
-**Repository**: [romus204/go-tagger.nvim](https://github.com/romus204/go-tagger.nvim)
+## TODO
+- [ ] adding other types of writing besides the snake case and configuring them via config  
+- [ ] more flexible config settings for different tags
