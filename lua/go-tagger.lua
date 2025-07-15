@@ -38,8 +38,14 @@ local function add_tags_to_line(line, tag_input)
     if existing_tag_str then
         tags = parse_existing_tags(existing_tag_str)
     else
-        before = line
-        after = ""
+        local beforeComment, afterComment = line:match("^(.-)//(.*)$") -- if line exist comment
+        if beforeComment and afterComment then
+            before = beforeComment
+            after = "//" .. afterComment
+        else
+            before = line
+            after = ""
+        end
     end
 
     local existing_keys = {}
