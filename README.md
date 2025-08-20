@@ -22,7 +22,7 @@ https://github.com/user-attachments/assets/a0295f98-7d15-4ab1-852c-8be877cb0fd7
 {
   "romus204/go-tagger.nvim",
   config = function()
-    require("go_tagger").setup({
+    require("go-tagger").setup({
       skip_private = true, -- Skip unexported fields (starting with lowercase)
     })
   end,
@@ -35,7 +35,7 @@ https://github.com/user-attachments/assets/a0295f98-7d15-4ab1-852c-8be877cb0fd7
 use {
   "romus204/go-tagger.nvim",
   config = function()
-    require("go_tagger").setup()
+    require("go-tagger").setup()
   end,
 }
 ```
@@ -45,7 +45,7 @@ use {
 ## ⚙️ Configuration
 
 ```lua
-require("go_tagger").setup({
+require("go-tagger").setup({
   skip_private = true -- default: true
 })
 ```
