@@ -6,7 +6,7 @@ https://github.com/user-attachments/assets/a0295f98-7d15-4ab1-852c-8be877cb0fd7
 
 ✅ Features:
 - Add new tags (`json`, `xml`, etc.) interactively
-- Convert field names to `snake_case`
+- Convert field names to `snake_case`,`camelCase`,`kebab-case`, `PascalCase`
 - Preserve existing tags
 - Skip unexported (private) fields by default
 - Remove specific tags or all tags from selected lines
@@ -24,6 +24,15 @@ https://github.com/user-attachments/assets/a0295f98-7d15-4ab1-852c-8be877cb0fd7
   config = function()
     require("go-tagger").setup({
       skip_private = true, -- Skip unexported fields (starting with lowercase)
+      casing = "camelCase", -- Global casing setting
+      tags = { -- Per tag setting override
+        json = {
+          casing = "camelCase" -- json tags should use camelCase
+        },
+        xml = {
+          casing = "snake_case" -- xml tags should use snake_case
+        }
+      }
     })
   end,
 }
@@ -35,7 +44,18 @@ https://github.com/user-attachments/assets/a0295f98-7d15-4ab1-852c-8be877cb0fd7
 use {
   "romus204/go-tagger.nvim",
   config = function()
-    require("go-tagger").setup()
+    require("go-tagger").setup({
+      skip_private = true, -- Skip unexported fields (starting with lowercase)
+      casing = "camelCase", -- Global casing setting
+      tags = { -- Per tag setting override
+        json = {
+          casing = "camelCase" -- json tags should use camelCase
+        },
+        xml = {
+          casing = "snake_case" -- xml tags should use snake_case
+        }
+      }
+    })
   end,
 }
 ```
@@ -44,11 +64,31 @@ use {
 
 ## ⚙️ Configuration
 
+Default config:
 ```lua
 require("go-tagger").setup({
-  skip_private = true -- default: true
+      skip_private = true, -- Skip unexported fields (starting with lowercase)
+      casing = "snake_case", -- Global casing setting
+      tags = {} -- Per tag setting override
 })
 ```
+
+Example:
+```lua
+require("go-tagger").setup({
+      skip_private = false, -- NO Skip unexported fields (starting with lowercase)
+      casing = "camelCase", -- Global casing setting
+      tags = { -- Per tag setting override
+        json = {
+          casing = "camelCase" -- json tags should use camelCase
+        },
+        xml = {
+          casing = "snake_case" -- xml tags should use snake_case
+        }
+      }
+})
+```
+
 
 ---
 
@@ -122,9 +162,3 @@ Name string `xml:"name"`
 vim.keymap.set("v", "<leader>at", ":AddGoTags<CR>", { desc = "Add Go struct tags", silent = true })
 vim.keymap.set("v", "<leader>rt", ":RemoveGoTags<CR>", { desc = "Remove Go struct tags", silent = true })
 ```
-
----
-
-## TODO
-- [ ] adding other types of writing besides the snake case and configuring them via config  
-- [ ] more flexible config settings for different tags
