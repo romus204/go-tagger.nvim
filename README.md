@@ -6,7 +6,7 @@ https://github.com/user-attachments/assets/a0295f98-7d15-4ab1-852c-8be877cb0fd7
 
 ✅ Features:
 - Add new tags (`json`, `xml`, etc.) interactively
-- Convert field names to `snake_case`
+- Convert field names to `snake_case`,`camelCase`,`kebab-case`, `PascalCase`
 - Preserve existing tags
 - Skip unexported (private) fields by default
 - Remove specific tags or all tags from selected lines
@@ -162,9 +162,3 @@ Name string `xml:"name"`
 vim.keymap.set("v", "<leader>at", ":AddGoTags<CR>", { desc = "Add Go struct tags", silent = true })
 vim.keymap.set("v", "<leader>rt", ":RemoveGoTags<CR>", { desc = "Remove Go struct tags", silent = true })
 ```
-
----
-
-## TODO
-- [ ] adding other types of writing besides the snake case and configuring them via config  
-- [ ] more flexible config settings for different tags
